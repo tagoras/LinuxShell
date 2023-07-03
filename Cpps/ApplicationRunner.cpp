@@ -1,4 +1,5 @@
 #include "../headers/ApplicationRunner.h"
+#include "../headers/UtilityFunctions.h"
 
 #include <iostream>
 #include <map>
@@ -8,9 +9,11 @@
 
 void Application_Runner::run() const
 {
+
     while(true)
     {
-        std::cout << ":~$ ";
+        std::string curret_directory = current_working_directory();
+        std::cout << curret_directory <<"$ ";
 
         std::string user_input;
         getline(std::cin, user_input);
