@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <memory>
 
 void Application_Runner::run() const
 {
@@ -17,13 +18,9 @@ void Application_Runner::run() const
         std::pair<std::string, std::vector<std::string>> pair;
         pair = command_parser.parseCommand(user_input);
 
-        std::cout << "Executing command: " << pair.first << std::endl;
-        std::cout << "Arguments are:";
+        std::shared_ptr<ICommand> command_to_execute = command_picker.pick_command(pair.first);
+        int command_result = command_to_execute->executeCommand(pair.second);
 
-        for(std::string arg : pair.second)
-        {
-            std::cout << arg << " ";
-        }
-        std::cout << std::endl;
+        if(command_result) std::cout << "An error has occured while executing " << pair.first << std::endl;
     }
 }
