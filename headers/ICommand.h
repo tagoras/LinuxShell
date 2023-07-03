@@ -6,7 +6,7 @@
 
 class ICommand{
     public:
-        virtual int executeCommand(std::vector<std::string>)=0;
+        virtual int executeCommand(std::vector<std::string>)const=0;
 };
 
 #endif
