@@ -11,7 +11,7 @@
 
 class Echo : public ICommand{
     public:
-        int executeCommand(std::vector<std::string>) const override;
+        int executeCommand(const std::vector<std::string>&) const override;
 };
 
 #endif

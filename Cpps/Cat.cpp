@@ -5,7 +5,7 @@
 
 #define BUFSIZE 4096
 
-int Cat::executeCommand(std::vector<std::string> args) const
+int Cat::executeCommand(const std::vector<std::string> &args) const
 {
     int file_descriptor = open(args[0].c_str(), O_RDONLY);
     if(file_descriptor==-1)

@@ -1,7 +1,7 @@
 
 #include "../headers/Echo.h"
 
-int Echo::executeCommand(std::vector<std::string> args) const {
+int Echo::executeCommand(const std::vector<std::string> &args) const {
     for(std::string arg : args)
     {
         arg+=" ";

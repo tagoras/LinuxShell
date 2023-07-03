@@ -5,7 +5,7 @@
 
 class Cat : public ICommand{
     public:
-        virtual int executeCommand(std::vector<std::string> args) const override;
+        virtual int executeCommand(const std::vector<std::string> &args) const override;
 };
 
 #endif
