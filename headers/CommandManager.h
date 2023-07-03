@@ -8,6 +8,7 @@
 
 #include "ICommand.h"
 #include "Echo.h"
+#include "Cat.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{
