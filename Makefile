@@ -1,5 +1,5 @@
-shell.out: main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o
-	g++ main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o -o shell.out
+shell.out: main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o
+	g++ main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o -o shell.out
 
 main.o: ./Cpps/main.cpp
 	g++ -c ./Cpps/main.cpp
@@ -25,5 +25,8 @@ Cat.o: ./Cpps/Cat.cpp
 Cp.o: ./Cpps/Cp.cpp
 	g++ -c ./Cpps/Cp.cpp
 
+UtilityFunctions.o: ./Cpps/UtilityFunctions.cpp
+	g++ -c ./Cpps/UtilityFunctions.cpp
+
 clean:
-	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o
+	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o
