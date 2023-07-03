@@ -1,5 +1,5 @@
-shell.out: main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o
-	g++ main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o -o shell.out
+shell.out: main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o
+	g++ main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o -o shell.out
 
 main.o: ./Cpps/main.cpp
 	g++ -c ./Cpps/main.cpp
@@ -19,5 +19,8 @@ CommandManager.o: ./Cpps/CommandManager.cpp
 CommandPicker.o: ./Cpps/CommandPicker.cpp
 	g++ -c ./Cpps/CommandPicker.cpp
 
+Cat.o: ./Cpps/Cat.cpp
+	g++ -c ./Cpps/Cat.cpp
+
 clean:
-	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o
+	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o Cat.o
