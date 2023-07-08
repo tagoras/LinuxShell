@@ -24,7 +24,12 @@ void Application_Runner::run() const
         std::shared_ptr<ICommand> command_to_execute = command_picker.pick_command(pair.first);
         int command_result = command_to_execute->executeCommand(pair.second);
 
-        if(command_result) std::cout << "An error has occured while executing " << pair.first << std::endl;
+        if(command_result)
+        {
+            const std::string error = error_manager.retrieveError();
+            std::cout << error << std::endl;
+        }
+
         else std::cout << std::endl;
     }
 }
