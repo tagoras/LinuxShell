@@ -1,0 +1,94 @@
+#include "../headers/ErrorManager.h"
+
+const std::string ErrorManager::retrieveError() const
+{
+    switch(errno)
+    {
+        case E2BIG: return "Argument list too long";
+        case EACCES: return "Permission denied";
+        case EADDRINUSE: return "Address already in use";
+        case EADDRNOTAVAIL: return "Address not available";
+        case EAFNOSUPPORT: return "Address family not supported";
+        case EAGAIN: return "Resource temporarily unavailable";
+        case EALREADY: return "Connection already in progress";
+        case EBADE: return "Invalid exchange";
+        case EBADF: return "Bad file descriptor";
+        case EBADFD: return "File descriptor in bad state";
+        case EBADMSG: return "Bad message";
+        case EBADR: return "Invalid request descriptor";
+        case EBADRQC: return "Invalid request code";
+        case EBADSLT: return "Invalid slot.";
+        case EBUSY: return "Device or resource busy";
+        case ECANCELED: return "Operation canceled";
+        case ECHILD: return "No child processes";
+        case ECHRNG: return "Channel number out of range";
+        case ECOMM: return "Communication error on send";
+        case ECONNABORTED: return "Connection aborted";
+        case ECONNREFUSED: return "Connection refused";
+        case ECONNRESET: return "Connection reset";
+        case EDEADLK: return "Resource deadlock avoided";
+        case EDESTADDRREQ: return "Destination address required";
+        case EDOM: return "Mathematics argument out of domain of function";
+        case EDQUOT: return "Disk quota exceeded";
+        case EEXIST: return "File exists";
+        case EFAULT: return "Bad address";
+        case EFBIG: return "File too large";
+        case EHOSTDOWN: return "Host is down";
+        case EHOSTUNREACH: return "Host is unreachable";
+        case EIDRM: return "Identifier removed";
+        case EILSEQ: return "Illegal byte sequence";
+        case EINPROGRESS: return "Operation in progress";
+        case EINTR: return "Interrupted function call";
+        case EINVAL: return "Invalid argument";
+        case EIO: return "Input/output error";
+        case EISCONN: return "Socket is connected";
+        case EISDIR: return "Is a directory";
+        case ELOOP: return "Too many levels of symbolic links";
+        case EMFILE: return "Too many open files";
+        case EMLINK: return "Too many links";
+        case EMSGSIZE: return "Message too long";
+        case EMULTIHOP: return "Multihop attempted";
+        case ENAMETOOLONG: return "Filename too long";
+        case ENETDOWN: return "Network is down";
+        case ENETRESET: return "Connection aborted by network";
+        case ENETUNREACH: return "Network unreachable";
+        case ENFILE: return "Too many open files in system";
+        case ENOBUFS: return "No buffer space available";
+        case ENODATA: return "No message is available on the STREAM head read queue";
+        case ENODEV: return "No such device";
+        case ENOENT: return "No such file or directory";
+        case ENOEXEC: return "Exec format error";
+        case ENOLCK: return "No locks available";
+        case ENOLINK: return "Link has been severed";
+        case ENOMEM: return "Not enough space";
+        case ENOMSG: return "No message of the desired type";
+        case ENOPROTOOPT: return "Protocol not available";
+        case ENOSPC: return "No space left on device";
+        case ENOSR: return "No STREAM resources";
+        case ENOSTR: return "Not a STREAM";
+        case ENOSYS: return "Function not implemented";
+        case ENOTCONN: return "The socket is not connected";
+        case ENOTDIR: return "Not a directory";
+        case ENOTEMPTY: return "Directory not empty";
+        case ENOTSOCK: return "Not a socket";
+        case ENOTSUP: return "Operation not supported";
+        case ENOTTY: return "Inappropriate I/O control operation";
+        case ENXIO: return "No such device or address";
+        case EOVERFLOW: return "Value too large to be stored in data type";
+        case EPERM: return "Operation not permitted";
+        case EPIPE: return "Broken pipe";
+        case EPROTO: return "Protocol error";
+        case EPROTONOSUPPORT: return "Protocol not supported";
+        case EPROTOTYPE: return "Protocol wrong type for socket";
+        case ERANGE: return "Result too large";
+        case EROFS: return "Read-only file";
+        case ESPIPE: return "Invalid seek";
+        case ESRCH: return "No such process";
+        case ESTALE: return "Stale file handle";
+        case ETIME: return "Timer expired";
+        case ETIMEDOUT: return "Connection timed out";
+        case ETXTBSY: return "Text file busy";
+        case EXDEV: return "Improper link";
+        default: return "Unknown error";
+    }
+}
