@@ -6,10 +6,16 @@
 #include <map>
 #include <memory>
 
+#include "ErrorManager.h"
 #include "ICommand.h"
 #include "Echo.h"
 #include "Cat.h"
 #include "Cp.h"
+#include "Cd.h"
+#include "Ln.h"
+#include "Mv.h"
+#include "Rm.h"
+#include "Umount.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{
