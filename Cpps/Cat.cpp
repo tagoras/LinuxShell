@@ -2,11 +2,26 @@
 
 #include <fcntl.h> // for open()
 #include <unistd.h> // for read(), write()
+#include <limits.h> // PATH_MAX
 
 #define BUFSIZE 4096
 
 int Cat::executeCommand(const std::vector<std::string> &args) const
 {
+    /*
+        Handle the case where the filepath is a symbolic link and -L is specified
+    */
+
+    if(args[0] == "-L")
+    {
+        char symbolicLinkContent[PATH_MAX];
+        ssize_t bytes_in_buf = readlink(args[1].c_str(), symbolicLinkContent, PATH_MAX);
+        size_t bytes_written = write(STDOUT_FILENO, symbolicLinkContent, bytes_in_buf);
+
+        if(bytes_written != bytes_in_buf) return -1;
+        else return 0;
+    }
+
     int file_descriptor = open(args[0].c_str(), O_RDONLY);
     if(file_descriptor==-1)
     {
