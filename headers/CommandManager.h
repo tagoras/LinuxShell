@@ -16,6 +16,8 @@
 #include "Mv.h"
 #include "Rm.h"
 #include "Umount.h"
+#include "Mount.h"
+#include "Mkdir.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{
