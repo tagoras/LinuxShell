@@ -6,4 +6,6 @@ make
 # Run make clean
 make clean
 
-./shell.out
+clear
+
+sudo ./shell.out
