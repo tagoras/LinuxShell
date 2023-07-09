@@ -1,7 +1,7 @@
 shell.out: main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o \
-	Cd.o Ln.o Mv.o Rm.o Umount.o ErrorManager.o
+	Cd.o Ln.o Mv.o Rm.o Umount.o ErrorManager.o Mount.o Mkdir.o
 	g++ main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o \
-	Ln.o Mv.o Rm.o Umount.o ErrorManager.o -o shell.out
+	Ln.o Mv.o Rm.o Umount.o ErrorManager.o Mount.o Mkdir.o -o shell.out
 
 main.o: ./Cpps/main.cpp
 	g++ -c ./Cpps/main.cpp
@@ -48,6 +48,12 @@ Umount.o: ./Cpps/Umount.cpp
 ErrorManager.o: ./Cpps/ErrorManager.cpp
 	g++ -c ./Cpps/ErrorManager.cpp
 
+Mount.o: ./Cpps/Mount.cpp
+	g++ -c ./Cpps/Mount.cpp
+
+Mkdir.o: ./Cpps/Mkdir.cpp
+	g++ -c ./Cpps/Mkdir.cpp
+
 clean:
-	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o Ln.o Mv.o Umount.o \
-	ErrorManager.o
+	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o Ln.o Mv.o Rm.o Umount.o \
+	ErrorManager.o Mount.o Mkdir.o
