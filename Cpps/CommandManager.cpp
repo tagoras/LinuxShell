@@ -10,4 +10,6 @@ Command_Manager::Command_Manager()
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("mv", std::make_shared<Mv>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("rm", std::make_shared<Rm>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("umount", std::make_shared<Umount>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("mount", std::make_shared<Mount>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("mkdir", std::make_shared<Mkdir>()));
 }
