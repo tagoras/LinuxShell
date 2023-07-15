@@ -18,6 +18,11 @@
 #include "Umount.h"
 #include "Mount.h"
 #include "Mkdir.h"
+#include "Id.h"
+#include "Setid.h"
+#include "Stat.h"
+#include "Chown.h"
+#include "Chgrp.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{
