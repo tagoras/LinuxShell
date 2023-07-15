@@ -25,3 +25,10 @@ uid_t username_to_id(const std::string &username)
     password_record=getpwnam(username.c_str());
     return password_record->pw_uid;
 }
+
+gid_t groupname_to_id(const std::string &groupname)
+{
+    struct group *group_record;
+    group_record = getgrnam(groupname.c_str());
+    return group_record->gr_gid;
+}
