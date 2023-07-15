@@ -12,4 +12,9 @@ Command_Manager::Command_Manager()
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("umount", std::make_shared<Umount>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("mount", std::make_shared<Mount>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("mkdir", std::make_shared<Mkdir>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("id", std::make_shared<Id>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("setid", std::make_shared<Setid>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("stat", std::make_shared<Stat>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("chown", std::make_shared<Chown>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("chgrp", std::make_shared<Chgrp>()));
 }
