@@ -23,6 +23,7 @@
 #include "Stat.h"
 #include "Chown.h"
 #include "Chgrp.h"
+#include "Chmod.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{

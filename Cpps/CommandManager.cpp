@@ -17,4 +17,5 @@ Command_Manager::Command_Manager()
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("stat", std::make_shared<Stat>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("chown", std::make_shared<Chown>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("chgrp", std::make_shared<Chgrp>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("chmod", std::make_shared<Chmod>()));
 }
