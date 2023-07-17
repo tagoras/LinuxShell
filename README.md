@@ -46,3 +46,8 @@ Similarly, Cpps folder is divided into 2 parts. It contains the c++ implementati
 
 - ICommand is an abstract class that declares one function called execute() any class inheriting from it has to override it. ICommand is inherited by every shell command implementation. It allows me to store different
   command objects using shared pointers.
+
+  # Building the project
+
+  The project was meant for Linux operating system. To build the project please type to shell:
+  ./build.sh
