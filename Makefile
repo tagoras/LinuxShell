@@ -12,8 +12,8 @@ ApplicationRunner.o: ./Cpps/ApplicationRunner.cpp
 CommandParser.o: ./Cpps/CommandParser.cpp
 	g++ -c ./Cpps/CommandParser.cpp
 
-Echo.o: ./Cpps/Echo.cpp
-	g++ -c ./Cpps/Echo.cpp
+Echo.o: ./Cpps/CommandImplementations/Echo.cpp
+	g++ -c ./Cpps/CommandImplementations/Echo.cpp
 
 CommandManager.o: ./Cpps/CommandManager.cpp
 	g++ -c ./Cpps/CommandManager.cpp
@@ -21,56 +21,56 @@ CommandManager.o: ./Cpps/CommandManager.cpp
 CommandPicker.o: ./Cpps/CommandPicker.cpp
 	g++ -c ./Cpps/CommandPicker.cpp
 
-Cat.o: ./Cpps/Cat.cpp
-	g++ -c ./Cpps/Cat.cpp
+Cat.o: ./Cpps/CommandImplementations/Cat.cpp
+	g++ -c ./Cpps/CommandImplementations/Cat.cpp
 
-Cp.o: ./Cpps/Cp.cpp
-	g++ -c ./Cpps/Cp.cpp
+Cp.o: ./Cpps/CommandImplementations/Cp.cpp
+	g++ -c ./Cpps/CommandImplementations/Cp.cpp
 
 UtilityFunctions.o: ./Cpps/UtilityFunctions.cpp
 	g++ -c ./Cpps/UtilityFunctions.cpp
 
-Cd.o: ./Cpps/Cd.cpp
-	g++ -c ./Cpps/Cd.cpp
+Cd.o: ./Cpps/CommandImplementations/Cd.cpp
+	g++ -c ./Cpps/CommandImplementations/Cd.cpp
 
-Ln.o: ./Cpps/Ln.cpp
-	g++ -c ./Cpps/Ln.cpp
+Ln.o: ./Cpps/CommandImplementations/Ln.cpp
+	g++ -c ./Cpps/CommandImplementations/Ln.cpp
 
-Mv.o: ./Cpps/Mv.cpp
-	g++ -c ./Cpps/Mv.cpp
+Mv.o: ./Cpps/CommandImplementations/Mv.cpp
+	g++ -c ./Cpps/CommandImplementations/Mv.cpp
 
-Rm.o: ./Cpps/Rm.cpp
-	g++ -c ./Cpps/Rm.cpp
+Rm.o: ./Cpps/CommandImplementations/Rm.cpp
+	g++ -c ./Cpps/CommandImplementations/Rm.cpp
 
-Umount.o: ./Cpps/Umount.cpp
-	g++ -c ./Cpps/Umount.cpp
+Umount.o: ./Cpps/CommandImplementations/Umount.cpp
+	g++ -c ./Cpps/CommandImplementations/Umount.cpp
 
 ErrorManager.o: ./Cpps/ErrorManager.cpp
 	g++ -c ./Cpps/ErrorManager.cpp
 
-Mount.o: ./Cpps/Mount.cpp
-	g++ -c ./Cpps/Mount.cpp
+Mount.o: ./Cpps/CommandImplementations/Mount.cpp
+	g++ -c ./Cpps/CommandImplementations/Mount.cpp
 
-Mkdir.o: ./Cpps/Mkdir.cpp
-	g++ -c ./Cpps/Mkdir.cpp
+Mkdir.o: ./Cpps/CommandImplementations/Mkdir.cpp
+	g++ -c ./Cpps/CommandImplementations/Mkdir.cpp
 
-Id.o: ./Cpps/Id.cpp
-	g++ -c ./Cpps/Id.cpp
+Id.o: ./Cpps/CommandImplementations/Id.cpp
+	g++ -c ./Cpps/CommandImplementations/Id.cpp
 
-Setid.o: ./Cpps/Setid.cpp
-	g++ -c ./Cpps/Setid.cpp
+Setid.o: ./Cpps/CommandImplementations/Setid.cpp
+	g++ -c ./Cpps/CommandImplementations/Setid.cpp
 
-Stat.o: ./Cpps/Stat.cpp
-	g++ -c ./Cpps/Stat.cpp
+Stat.o: ./Cpps/CommandImplementations/Stat.cpp
+	g++ -c ./Cpps/CommandImplementations/Stat.cpp
 
-Chown.o: ./Cpps/Chown.cpp
-	g++ -c ./Cpps/Chown.cpp
+Chown.o: ./Cpps/CommandImplementations/Chown.cpp
+	g++ -c ./Cpps/CommandImplementations/Chown.cpp
 
-Chgrp.o: ./Cpps/Chgrp.cpp
-	g++ -c ./Cpps/Chgrp.cpp
+Chgrp.o: ./Cpps/CommandImplementations/Chgrp.cpp
+	g++ -c ./Cpps/CommandImplementations/Chgrp.cpp
 
-Chmod.o: ./Cpps/Chmod.cpp
-	g++ -c ./Cpps/Chmod.cpp
+Chmod.o: ./Cpps/CommandImplementations/Chmod.cpp
+	g++ -c ./Cpps/CommandImplementations/Chmod.cpp
 
 clean:
 	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o Ln.o Mv.o Rm.o Umount.o \
