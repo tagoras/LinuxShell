@@ -2,7 +2,7 @@
 
 This project aims to implement a program that acts as a standard linux shell. The purpose of the project is to familiarise with the Unix programming interface (especially linux programming), C++ programming and SOLID programming principles.
 
-This project is my way of stepping into the world of Linux system programming with C++. It will get more complicated as I uncover further system programming concepts. It also serves as a way to learn operating concepts.
+This project is my way of stepping into the world of Linux system programming with C++. It will get more complicated as I uncover further system programming concepts. It also serves as a way to learn operating system concepts.
 
 # Implemented Commands
 
