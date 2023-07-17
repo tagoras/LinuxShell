@@ -1,7 +1,7 @@
 shell.out: main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o \
-	Cd.o Ln.o Mv.o Rm.o Umount.o ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o
+	Cd.o Ln.o Mv.o Rm.o Umount.o ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o Chmod.o
 	g++ main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o \
-	Ln.o Mv.o Rm.o Umount.o ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o -o shell.out
+	Ln.o Mv.o Rm.o Umount.o ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o Chmod.o -o shell.out
 
 main.o: ./Cpps/main.cpp
 	g++ -c ./Cpps/main.cpp
@@ -69,6 +69,9 @@ Chown.o: ./Cpps/Chown.cpp
 Chgrp.o: ./Cpps/Chgrp.cpp
 	g++ -c ./Cpps/Chgrp.cpp
 
+Chmod.o: ./Cpps/Chmod.cpp
+	g++ -c ./Cpps/Chmod.cpp
+
 clean:
 	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o Ln.o Mv.o Rm.o Umount.o \
-	ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o
+	ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o Chmod.o
