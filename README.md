@@ -44,7 +44,7 @@ Similarly, Cpps folder is divided into 2 parts. It contains the c++ implementati
 - CommandPicker, which retrieves an ICommand object also contains CommandManager object.
 - CommandManager object is used to store all the commands that the application can run.
 
-- ICommand is an abstract class that declares one function called execute() any class inheriting from it has to override it. ICommand is inherited by every shell command implementation. It allows me to store different
+- ICommand is an abstract class that declares one function called execute() any class inheriting from it has to override it. ICommand is inherited by every shell command implementation. It allows storing different
   command objects using shared pointers.
 
   # Building the project
