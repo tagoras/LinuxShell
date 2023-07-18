@@ -24,6 +24,7 @@
 #include "./CommandHeaders/Chown.h"
 #include "./CommandHeaders/Chgrp.h"
 #include "./CommandHeaders/Chmod.h"
+#include "./CommandHeaders/Time.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{
