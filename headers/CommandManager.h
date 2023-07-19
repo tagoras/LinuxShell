@@ -26,6 +26,8 @@
 #include "./CommandHeaders/Chmod.h"
 #include "./CommandHeaders/Time.h"
 #include "./CommandHeaders/Suicide.h"
+#include "./CommandHeaders/Sleep.h"
+#include "./CommandHeaders/Ls.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{

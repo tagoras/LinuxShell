@@ -20,4 +20,6 @@ Command_Manager::Command_Manager()
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("chmod", std::make_shared<Chmod>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("time", std::make_shared<Time>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("suicide", std::make_shared<Suicide>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("sleep", std::make_shared<Sleep>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("ls", std::make_shared<Ls>()));
 }
