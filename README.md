@@ -24,6 +24,8 @@ Here is a list of commands that are currently supported by my shell command (The
 - setid
 - stat
 - umount
+- ls
+- sleep
 
 In terms of the shell command implementation, certain commands are easy to implement (at least their simple versions) such as (cd, chgrp, chown, mkdir etc.) but may have hidden caviets (especially when it comes to permissions which might be influenced by processes umask, or the file system mount options depending on what you are working with). Other commands such as mv are more lengthy (for example to implement moving a file to another file system which requires to copy the whole file as opposed to change the directory entries).
 
