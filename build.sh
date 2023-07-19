@@ -5,3 +5,5 @@ make
 
 # Run make clean
 make clean
+
+sudo ./shell.out
