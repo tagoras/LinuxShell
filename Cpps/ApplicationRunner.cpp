@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <exception>
 
 void Application_Runner::run() const
 {
@@ -21,7 +22,17 @@ void Application_Runner::run() const
         std::pair<std::string, std::vector<std::string>> pair;
         pair = command_parser.parseCommand(user_input);
         
-        std::shared_ptr<ICommand> command_to_execute = command_picker.pick_command(pair.first);
+        std::shared_ptr<ICommand> command_to_execute;
+        
+        try{
+            command_to_execute = command_picker.pick_command(pair.first);
+        }
+        catch(std::exception &e)
+        {
+            std::cout << "No such command: " << pair.first << std::endl;
+            continue;
+        }
+
         int command_result = command_to_execute->executeCommand(pair.second);
 
         if(command_result)
