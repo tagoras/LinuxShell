@@ -47,14 +47,9 @@ int Ls::executeCommand(const std::vector<std::string> &args) const
             {
                 // Ignore stat() and just assume that the entry is a simple file
             }
-            else
+            else if(entry_info.st_mode & S_IFDIR)
             {
-                if(entry_info.st_mode & S_IFDIR) isDirectory = true;
-            }
-
-            if(isDirectory)
-            {
-                std::cout << std::left << std::setw(13) << "\033[0;32m" << std::string(next_entry->d_name) << "\033[0m ";
+                std::cout << std::left << "\033[0;32m" << std::setw(13) << std::string(next_entry->d_name) << "\033[0m ";
             }
             else
             {
