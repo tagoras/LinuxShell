@@ -9,6 +9,9 @@
 class Time : public ICommand{
     public:
         virtual int executeCommand(const std::vector<std::string>&) const;
+        int timeEpoch() const;
+        int timeSystem() const;
+        int timeProcess() const;
 };
 
 #endif
