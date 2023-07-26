@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <linux/limits.h>
 
+#include <iostream>
+
 const std::string current_working_directory()
 {
     char buf[PATH_MAX];
@@ -31,4 +33,10 @@ gid_t groupname_to_id(const std::string &groupname)
     struct group *group_record;
     group_record = getgrnam(groupname.c_str());
     return group_record->gr_gid;
+}
+
+void sureKillHandler(int)
+{
+    std::cout << "The process received sure kill signal, exiting" << std::endl;
+    exit(EXIT_FAILURE);
 }
