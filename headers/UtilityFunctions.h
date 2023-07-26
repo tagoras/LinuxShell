@@ -11,4 +11,6 @@ gid_t groupname_to_id(const std::string &groupname);
 
 void sureKillHandler(int);
 
+int stringToSignal(const std::string &signal_constant);
+
 #endif
