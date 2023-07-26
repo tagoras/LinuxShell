@@ -28,6 +28,8 @@
 #include "./CommandHeaders/Suicide.h"
 #include "./CommandHeaders/Sleep.h"
 #include "./CommandHeaders/Ls.h"
+#include "./CommandHeaders/Kill.h"
+#include "./CommandHeaders/Pid.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{

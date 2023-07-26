@@ -22,4 +22,6 @@ Command_Manager::Command_Manager()
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("suicide", std::make_shared<Suicide>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("sleep", std::make_shared<Sleep>()));
     commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("ls", std::make_shared<Ls>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("kill", std::make_shared<Kill>()));
+    commands.insert(std::pair<std::string, std::shared_ptr<ICommand>>("pid", std::make_shared<Pid>()));
 }
