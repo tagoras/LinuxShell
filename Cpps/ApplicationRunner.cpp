@@ -8,9 +8,10 @@
 #include <memory>
 #include <exception>
 
+#include <pthread.h>
+
 void Application_Runner::run() const
 {
-
     while(true)
     {
         std::string curret_directory = current_working_directory();
@@ -18,6 +19,12 @@ void Application_Runner::run() const
 
         std::string user_input;
         getline(std::cin, user_input);
+
+        if(user_input=="q") break;
+
+        pthread_t log_thread;
+        pthread_create(&log_thread, nullptr, CommandLogger::logToFile, &user_input);
+        pthread_detach(log_thread);
 
         std::pair<std::string, std::vector<std::string>> pair;
         pair = command_parser.parseCommand(user_input);
