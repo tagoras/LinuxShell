@@ -4,6 +4,7 @@
 #include "CommandParser.h"
 #include "CommandPicker.h"
 #include "SignalHandler.h"
+#include "CommandLogger.h"
 
 class Application_Runner{
     private:
