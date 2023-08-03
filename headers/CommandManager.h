@@ -32,6 +32,7 @@
 #include "./CommandHeaders/Pid.h"
 #include "./CommandHeaders/Signals.h"
 #include "./CommandHeaders/Run.h"
+#include "./CommandHeaders/Find.h"
 
 // Class Used to keep all of the shell commands
 class Command_Manager{
