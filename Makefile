@@ -1,9 +1,9 @@
 shell.out: main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o \
 	Cd.o Ln.o Mv.o Rm.o Umount.o ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o Chmod.o Time.o Suicide.o \
-	Sleep.o Ls.o SignalHandler.o Kill.o Pid.o Signals.o Run.o
-	g++ -L lrt main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o \
+	Sleep.o Ls.o SignalHandler.o Kill.o Pid.o Signals.o Run.o CommandLogger.o Find.o
+	g++ -L lrt -L pthread main.o ApplicationRunner.o CommandParser.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o \
 	Ln.o Mv.o Rm.o Umount.o ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o Chmod.o Time.o Suicide.o \
-	Sleep.o Ls.o SignalHandler.o Kill.o Pid.o Signals.o Run.o -o shell.out
+	Sleep.o Ls.o SignalHandler.o Kill.o Pid.o Signals.o Run.o CommandLogger.o Find.o -o shell.out
 
 main.o: ./Cpps/main.cpp
 	g++ -c ./Cpps/main.cpp
@@ -101,6 +101,13 @@ Signals.o: ./Cpps/CommandImplementations/Signals.cpp
 Run.o: ./Cpps/CommandImplementations/Run.cpp
 	g++ -c ./Cpps/CommandImplementations/Run.cpp
 
+Find.o: ./Cpps/CommandImplementations/Find.cpp
+	g++ -c ./Cpps/CommandImplementations/Find.cpp
+
+CommandLogger.o: ./Cpps/CommandLogger.cpp
+	g++ -c ./Cpps/CommandLogger.cpp
+
 clean:
 	rm -f ApplicationRunner.o CommandParser.o main.o Echo.o CommandManager.o CommandPicker.o Cat.o Cp.o UtilityFunctions.o Cd.o Ln.o Mv.o Rm.o Umount.o \
-	ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o Chmod.o Time.o Suicide.o Sleep.o Ls.o SignalHandler.o Kill.o Pid.o Signals.o Run.o
+	ErrorManager.o Mount.o Mkdir.o Id.o Setid.o Stat.o Chown.o Chgrp.o Chmod.o Time.o Suicide.o Sleep.o Ls.o SignalHandler.o Kill.o Pid.o Signals.o Run.o \
+	CommandLogger. Find.o
