@@ -9,13 +9,8 @@
 #include <deque>
 
 /*
-    THIS IS NOT CURRENTLY WORKING AND HAS LOADS OF THREAD SYNCHRONIZATION ISSUES. TO BE FIXED
+    ALMOST WORKING, NEED TO FIX Find::thread_function() as it's path string creation is not working if, lets say, we start from the /
 */
-
-pthread_mutex_t thread_access = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t thread_died = PTHREAD_COND_INITIALIZER;
-
-int dead_threads;
 
 class thread_data{
     public:
@@ -25,104 +20,82 @@ class thread_data{
         std::vector<std::string> unchecked_directories;
         // tread_id is used when creating and joining threads
         pthread_t thread_id;
-        // The following are used to mark that the data structure is associated with a thread that has finished its execution
-        pthread_mutex_t status_lock;
-        bool isFinished;
-    public:
-        thread_data() {pthread_mutex_init(&status_lock, nullptr);}
-        ~thread_data(){pthread_mutex_destroy(&status_lock);}
 };
+
+
+pthread_mutex_t pool_lock = PTHREAD_MUTEX_INITIALIZER;
+std::vector<thread_data *> unjoined_threads;
+
+std::vector<thread_data *> idle_threads;
+
+pthread_cond_t cond_thread_died = PTHREAD_COND_INITIALIZER;
 
 int Find::executeCommand(const std::vector<std::string> &args) const
 {
     std::vector<std::string> unchecked_directories;
+    unchecked_directories.push_back(args[1]);
 
-    // Find out how many cores we have and initialise pool of that many cores (minus one for managing thread)
+    // Find out how many cores we have and initialise pool of that many cores
     int num_cores = sysconf(_SC_NPROCESSORS_ONLN)-1;
-
-    dead_threads = num_cores;
 
     thread_data *threads = new thread_data[num_cores];
 
     for(int i=0;i<num_cores;++i){threads[i].target=args[0];}
-    // Lets use one thread to go through initial directories
-    pthread_create(&threads->thread_id,nullptr, Find::thread_function, threads);
-    pthread_join(threads->thread_id, nullptr);
 
-    // Analyse results, if target was not found we can start utilising multiple threads
-
-    if(threads[0].target!=args[0])
-    {
-        std::cout << threads[0].target;
-        delete[] threads;
-        return 0;
-    }
-
-    // Otherwise add unchecked directories to the vector
-    for(const auto dir : threads[0].unchecked_directories)
-    {
-        unchecked_directories.push_back(dir);
-    }
-    std::cout << unchecked_directories.size() << std::endl;
-
-    // And now start to utilise threads
-    // Start with initializing per-thread structures, subject for removing if: new thread_data[num_cores]{args[0]}; works as expected
-    for(int i=0;i<num_cores;++i)
-    {
-        threads[i].target=args[0];
-    }
+    for(int i=0;i<num_cores;++i) idle_threads.push_back(&threads[i]);
 
     for(;;)
     {
-        pthread_mutex_lock(&thread_access);
-        while(dead_threads==0)
+        pthread_mutex_lock(&pool_lock);
+
+        while(idle_threads.size()==0 && unjoined_threads.size()==0)
         {
-            // following function call atomically unlocks thread_access and then sleeps until thread_died is notified
-            pthread_cond_wait(&thread_died, &thread_access);
-            // After return, we have a lock on thread_access
+            pthread_cond_wait(&cond_thread_died, &pool_lock);
         }
 
-        // We will be giving work to threads until no more threads are left or until we have no unchecked directories
-        int index = 0;
-        while(dead_threads && index<num_cores && unchecked_directories.size())
+        // Start by analysing unjoined threads and adding them to idle threads.
+        for(auto *thread : unjoined_threads)
         {
-            pthread_mutex_lock(&threads[index].status_lock);
-            if(threads[index].isFinished)
+            if(thread->target != args[0])
             {
-                // Reset the flag for future use of the structure and release the lock
-                threads[index].isFinished=false;
-                pthread_mutex_unlock(&threads[index].status_lock);
-
-                // Let us first check if the target string was changed, which would indicate that path was found and we need to stop searching
-                if(threads[index].target!=args[0])
-                {
-                    std::cout << threads[index].target;
-                    // TODO: FIX MEMORY LEAK.
-                    return 0;
-                }
-
-                for(auto dir_path : threads[index].unchecked_directories)
-                {
-                    unchecked_directories.push_back(dir_path);
-                }
-
-                threads[index].unchecked_directories.clear();
-
-                // This thread has finished its execution, meaning we can assign a new directory to it
-                threads[index].path = unchecked_directories.back();
-                unchecked_directories.pop_back();
-                
-                // Now initiate a thread and reduce the number of dead threads
-                pthread_create(&threads[index].thread_id, nullptr, Find::thread_function, &threads[index]);
-                --dead_threads;
+                std::cout << thread->target;
+                std::cout << std::flush;
+                delete[] threads;
+                return 0;
             }
-            ++index;
+            for(const auto dir : thread->unchecked_directories) unchecked_directories.push_back(dir);
+
+            thread->unchecked_directories.clear();
+
+            idle_threads.push_back(thread);
         }
 
-        pthread_mutex_unlock(&thread_access);
-    }
-    
+        // Since all the unjoined threads have been analysed we can clear the vector
+        unjoined_threads.clear();
 
+        // Now create a working thread for every unchecked directory, but prior to that, check if uncheck_directories has something in it
+        // If they do not, then we will have to sleep again. Additionally, if idle_threads == num_cores AND we have no directories left than the file
+        // Could not be found
+        if(idle_threads.size()==num_cores && unchecked_directories.size()==0)
+        {
+            std::cout << "Could not find" << std::endl;
+            return -1;
+        }
+
+        // Keep issuing new threads for each directory until either runs out
+        while(unchecked_directories.size() && idle_threads.size())
+        {
+            thread_data *new_thread_data = idle_threads.back();
+            idle_threads.pop_back();
+
+            new_thread_data->path = unchecked_directories.back();
+            unchecked_directories.pop_back();
+
+            pthread_create(&new_thread_data->thread_id, nullptr, Find::thread_function, new_thread_data);
+        }
+
+        pthread_mutex_unlock(&pool_lock);
+    }
     return 0;
 }
 
@@ -148,17 +121,11 @@ void* Find::thread_function(void *data_pointer)
         if(std::string(entry->d_name)=="." || std::string(entry->d_name)=="..") continue;
 
         current_entry_path = data->path + "/" + std::string(entry->d_name);
-        // Check if the name of the entry matches  the target and if so, terminate after setting the target field
+        // Check if the name of the entry matches the target and if so, terminate after setting the target field
         if(std::string(entry->d_name)==data->target)
         {
-            data->target = current_entry_path;
-            closedir(directory_stream);
-            
-            pthread_mutex_lock(&thread_access);
-            ++dead_threads;
-            pthread_mutex_unlock(&thread_access);
-
-            return nullptr;
+            data->target=current_entry_path;
+            break;
         }
         else
         {
@@ -185,10 +152,12 @@ void* Find::thread_function(void *data_pointer)
         }
     }
 
-    pthread_mutex_lock(&thread_access);
-    ++dead_threads;
-    pthread_mutex_unlock(&thread_access);
-    pthread_cond_signal(&thread_died);
+    
+
+    pthread_mutex_lock(&pool_lock);
+    unjoined_threads.push_back(data);
+    pthread_mutex_unlock(&pool_lock);
+    pthread_cond_signal(&cond_thread_died);
 
     return nullptr;
 }
