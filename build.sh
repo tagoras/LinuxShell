@@ -4,4 +4,4 @@
 make
 
 # Run make clean
-make clean
+#make clean
